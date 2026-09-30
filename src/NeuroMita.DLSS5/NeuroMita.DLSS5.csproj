@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    NeuroMita.DLSS5: built-in DLSS 5 neural rendering settings for NeuroMita.
+
+    Building requires the BepInEx interop assemblies that BepInEx generates on the user's own
+    machine (they are derived from the game's IL2CPP metadata and cannot be shipped). Provide the
+    game folder with any of:
+
+      1. dotnet build -c Release -p:GameDir="D:\Games\NeuroMita"
+      2. environment variable NEUROMITA_DIR
+      3. a file named game.dir next to the repository root containing the path
+
+    The expected layout is the one created by install.bat:
+      <GameDir>\NeuroMita.exe
+      <GameDir>\BepInEx\core\BepInEx.Unity.IL2CPP.dll
+      <GameDir>\BepInEx\interop\Assembly-CSharp.dll     (generated after the first game launch)
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>NeuroMita.DLSS5</AssemblyName>
+    <RootNamespace>NeuroMita.DLSS5</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <DebugType>none</DebugType>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+
+    <!-- NuGet / GitHub metadata -->
+    <Version>1.0.0</Version>
+    <Authors>NeuroMita DLSS5 contributors</Authors>
+    <Product>NeuroMita.DLSS5</Product>
+    <Description>Adds a built-in DLSS 5 neural rendering settings menu to NeuroMita (BepInEx 6, IL2CPP).</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/younai666/NeuroMita.DLSS5</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)' == '' AND '$(NEUROMITA_DIR)' != ''">$(NEUROMITA_DIR)</GameDir>
+    <GameDir Condition="'$(GameDir)' == '' AND Exists('$(MSBuildThisFileDirectory)..\..\game.dir')">$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)..\..\game.dir').Trim())</GameDir>
+    <BepInExDir Condition="'$(BepInExDir)' == '' AND '$(GameDir)' != ''">$(GameDir)\BepInEx</BepInExDir>
+    <InteropDir Condition="'$(InteropDir)' == '' AND '$(BepInExDir)' != ''">$(BepInExDir)\interop</InteropDir>
+  </PropertyGroup>
+
+  <Target Name="ValidateGamePaths" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="'$(GameDir)' == ''"
+           Text="GameDir is not set. Use -p:GameDir=&quot;...&quot;, set NEUROMITA_DIR, or create game.dir at the repository root. See CONTRIBUTING.md." />
+    <Error Condition="!Exists('$(GameDir)')" Text="GameDir '$(GameDir)' does not exist." />
+    <Error Condition="!Exists('$(InteropDir)\Assembly-CSharp.dll')"
+           Text="Interop assemblies not found at '$(InteropDir)'. Install BepInEx into the game and launch it once so BepInEx generates BepInEx\interop\." />
+  </Target>
+
+  <ItemGroup>
+    <!-- BepInEx 6 (IL2CPP) -->
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(BepInExDir)\core\BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(BepInExDir)\core\BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(BepInExDir)\core\Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDir)\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Unity modules used by the plugin -->
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(InteropDir)\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(InteropDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(InteropDir)\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(InteropDir)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(InteropDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(InteropDir)\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- the game itself -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(InteropDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,28 @@
+# .NET / C#
+bin/
+obj/
+dist/
+*.user
+*.suo
+*.nupkg
+
+# 本地游戏路径（每台机器不同，不进仓库）
+game.dir
+*.local.props
+
+# 日志（排查问题时才需要，附件形式提供）
+*.log
+BepInEx/LogOutput.log
+dlss5-feed.log
+ReShade.log
+RenoDX-DLSS5-crash.log
+
+# IDE
+.vs/
+.idea/
+*.swp
+*~
+
+# 构建/下载缓存
+_dlss5/
+.ci/

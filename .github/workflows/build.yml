@@ -1,0 +1,78 @@
+name: build
+
+# 重要限制（先读完再改这个文件）
+# ---------------------------------------------------------------------------
+# 本插件编译时需要 **游戏本机生成的 BepInEx interop 程序集**（BepInEx\interop\*.dll），
+# 它们来自 IL2CPP 元数据、不在仓库里，CI runner 上也没有游戏本体。
+# 因此这个工作流做的是：
+#   1) 仓库布局检查（必需文件是否齐全）
+#   2) 尝试构建，但把"interop / GameDir 缺失"这类**预期错误**降级为警告
+# 结论：**CI 绿 ≠ 可编译**，真正的编译验证必须在本机做（见 CONTRIBUTING.md）。
+#
+# 如果 csproj 将来支持用桩类型顶掉 interop 引用（例如 -p:SkipGameRefs=true），
+# 请把下面的 fallback 改成真正的构建，让 CI 有实际意义。
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  layout-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 仓库布局检查
+        run: |
+          set -e
+          missing=0
+          for f in README.md LICENSE .gitignore CHANGELOG.md CONTRIBUTING.md \
+                   docs/CONFIG.md docs/ARCHITECTURE.md docs/TROUBLESHOOTING.md \
+                   docs/screenshots/README.md \
+                   .github/PULL_REQUEST_TEMPLATE.md \
+                   .github/ISSUE_TEMPLATE/bug_report.md; do
+            if [ ! -f "$f" ]; then echo "::error file=$f::缺少必需文件 $f"; missing=1; fi
+          done
+          if [ "$missing" -ne 0 ]; then exit 1; fi
+          echo "布局 OK"
+
+      - name: 检查是否有 CRLF / 文件编码问题（Markdown 必须 UTF-8）
+        run: |
+          set -e
+          bad=0
+          while IFS= read -r f; do
+            if grep -q $'\r' "$f"; then echo "::warning file=$f::含有 CRLF 行尾"; fi
+            if head -c 3 "$f" | od -An -tx1 | grep -q 'ef bb bf'; then
+              echo "::error file=$f::含有 UTF-8 BOM（本项目要求无 BOM）"; bad=1
+            fi
+          done < <(find . -name '*.md' -not -path './.git/*')
+          exit $bad
+
+      - name: 安装 .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: 尝试构建插件（预期会因缺少 interop 而降级为警告）
+        run: |
+          set +e
+          dotnet build src/NeuroMita.DLSS5/NeuroMita.DLSS5.csproj \
+            -c Release \
+            -p:GameDir="${GITHUB_WORKSPACE}/.ci-stub-game" \
+            -p:SkipGameRefs=true 2>&1 | tee build.log
+          code=${PIPESTATUS[0]}
+          set -e
+
+          if [ "$code" -ne 0 ]; then
+            if grep -qiE 'interop|GameDir|SkipGameRefs|interop assemblies' build.log; then
+              echo "::warning::完整构建需要游戏本机生成的 BepInEx interop 程序集，CI 无法提供。"
+              echo "::warning::本次只完成了仓库布局与编码检查；请在本机按 CONTRIBUTING.md 构建验证。"
+              exit 0
+            fi
+            echo "::error::构建失败，且原因不是缺少 interop —— 请查看上面的输出"
+            exit "$code"
+          fi
+
+          echo "构建成功（说明 csproj 已支持在无游戏环境下编译）"
