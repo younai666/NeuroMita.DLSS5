@@ -69,7 +69,7 @@ tools\Install-DLSS5.ps1         安装器（含前置检查与配置写入）
 tools\Verify-Install.ps1        安装校验（可反复运行）
 tools\Patch-ReShadeSplash.ps1   ReShade 启动横幅补丁（含备份 / -Restore 还原）
 README.md                       中文说明
-README.ru.md                    俄文说明
+README.md                       俄文说明（GitHub 默认展示）
 docs\ARCHITECTURE.md            实现细节（含全部踩坑结论）
 docs\CONFIG.md                  参数与配置键完整表
 docs\TROUBLESHOOTING.md         故障排查
@@ -186,7 +186,7 @@ tools\Install-DLSS5.ps1         установщик (проверки и зап
 tools\Verify-Install.ps1        проверка установки (можно запускать повторно)
 tools\Patch-ReShadeSplash.ps1   патч стартового баннера ReShade (с резервной копией и -Restore)
 README.md                       документация на китайском
-README.ru.md                    документация на русском
+README.md                       документация на русском (по умолчанию)
 docs\ARCHITECTURE.md            детали реализации (включая все найденные грабли)
 docs\CONFIG.md                  полная таблица параметров и ключей
 docs\TROUBLESHOOTING.md         решение проблем

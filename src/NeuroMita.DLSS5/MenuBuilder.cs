@@ -63,8 +63,11 @@ namespace NeuroMita.DLSS5
                 foreach (var ut in row.GetComponentsInChildren<UnityEngine.UI.Text>(true))
                 {
                     if (ut == null || IsValueText(ut.transform, row.transform)) continue;
-                    ut.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
-                    ut.verticalOverflow = UnityEngine.VerticalWrapMode.Overflow;
+                    // Truncate instead of Overflow: a caption that still does not fit at the minimum
+                    // font size must be cut inside its own slot, never run underneath the value and
+                    // the slider of the row (that is what Overflow produced in Russian).
+                    ut.horizontalOverflow = UnityEngine.HorizontalWrapMode.Wrap;
+                    ut.verticalOverflow = UnityEngine.VerticalWrapMode.Truncate;
                     int max = ut.fontSize > 0 ? ut.fontSize : 32;
                     ut.resizeTextForBestFit = true;
                     ut.resizeTextMaxSize = max;

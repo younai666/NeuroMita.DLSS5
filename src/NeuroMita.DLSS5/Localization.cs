@@ -62,14 +62,14 @@ namespace NeuroMita.DLSS5
             { "param.style", new[] { "NR 风格", "NR-stijl", "NR style", "Style NR", "NR-Stil", "Styl NR", "Stil NR", "Стиль NR", "Estilo NR", "NR stili", "Стиль NR" } },
             { "param.intensity", new[] { "NR 强度", "NR-intensiteit", "NR intensity", "Intensité NR", "NR-Intensität", "Intensywność", "Intensitate", "Сила NR", "Intensidad", "NR yoğunluğu", "Сила NR" } },
             { "param.localtone", new[] { "局部色调", "Lokale toon", "Local tone", "Ton local", "Lokaler Ton", "Ton lokalny", "Ton local", "Локальный тон", "Tono local", "Yerel ton", "Локальний тон" } },
-            { "param.localstruct", new[] { "局部结构", "Lokale structuur", "Local structure", "Structure locale", "Lokale Struktur", "Struktura lokalna", "Structură locală", "Локальная структура", "Estructura local", "Yerel yapı", "Локальна структура" } },
+            { "param.localstruct", new[] { "局部结构", "Lokale structuur", "Local structure", "Structure locale", "Lokale Struktur", "Struktura lokalna", "Structură locală", "Лок. структура", "Estructura local", "Yerel yapı", "Локальна структура" } },
             { "param.skin", new[] { "皮肤结构", "Huidstructuur", "Skin structure", "Structure de peau", "Hautstruktur", "Struktura skóry", "Structură piele", "Структура кожи", "Estructura de piel", "Cilt yapısı", "Структура шкіри" } },
             { "param.automask", new[] { "自动遮罩", "Automasker", "Automatic mask", "Masque auto", "Autom. Maske", "Automaska", "Mască auto", "Автомаска", "Máscara auto", "Otomatik maske", "Автомаска" } },
             { "param.passes", new[] { "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass", "Multi Pass" } },
 
             { "state.running", new[] { " [运行中]", " [actief]", " [running]", " [actif]", " [läuft]", " [działa]", " [activ]", " [работает]", " [activo]", " [çalışıyor]", " [працює]" } },
             { "state.stopped", new[] { " [已停止]", " [gestopt]", " [stopped]", " [arrêté]", " [gestoppt]", " [zatrzymane]", " [oprit]", " [остановлено]", " [detenido]", " [durdu]", " [зупинено]" } },
-            { "suffix.restart", new[] { " (重启)", " (herstart)", " (restart)", " (redémarrage)", " (Neustart)", " (restart)", " (repornire)", " (перезапуск)", " (reinicio)", " (yeniden)", " (перезапуск)" } },
+            { "suffix.restart", new[] { " (重启)", " (herstart)", " (restart)", " (redémarrage)", " (Neustart)", " (restart)", " (repornire)", " (рестарт)", " (reinicio)", " (yeniden)", " (рестарт)" } },
             { "suffix.softer", new[] { " (降锐度)", " (zachter)", " (softer)", " (plus doux)", " (weicher)", " (miękciej)", " (mai moale)", " (мягче)", " (más suave)", " (yumuşak)", " (м'якше)" } },
         };
 

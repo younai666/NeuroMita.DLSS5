@@ -10,7 +10,7 @@
 `settings-l1.png` —— 图形页里的 **L1 入口行**（标签为 `DLSS5 神经渲染` / `DLSS5 Neural Rendering`）。
 
 补图方法：游戏内进入 `设置 → 图像`，对准那一行截图（建议 1920x1080 全窗口），存成 `docs/screenshots/settings-l1.png`，
-然后在 `README.md` 与 `README.ru.md` 的"效果截图 / Скриншоты"表里加一行即可。
+然后在 `README.md` 与 `README.zh-CN.md` 的"效果截图 / Скриншоты"表里加一行即可。
 
 ## 注意
 

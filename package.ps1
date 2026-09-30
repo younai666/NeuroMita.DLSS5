@@ -10,7 +10,7 @@
              install.bat                  one click installer (double click)
              plugin\NeuroMita.DLSS5.dll   the BepInEx plugin
              tools\*.ps1                  install / verify / splash patch scripts
-             README.md, README.ru.md, LICENSE, CHANGELOG.md, CONTRIBUTING.md
+             README.md, README.zh-CN.md, LICENSE, CHANGELOG.md, CONTRIBUTING.md
              docs\**
              SHA256SUMS.txt
       4. zip it and render the release notes template into dist\RELEASE-NOTES.md
@@ -76,7 +76,7 @@ Copy-Item -LiteralPath (Join-Path $root 'installer\install.bat') -Destination (J
 foreach ($script in Get-ChildItem -LiteralPath (Join-Path $root 'tools') -Filter *.ps1 -File) {
     Copy-Item -LiteralPath $script.FullName -Destination (Join-Path $stage 'tools') -Force
 }
-foreach ($file in @('README.md', 'README.ru.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md')) {
+foreach ($file in @('README.md', 'README.zh-CN.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md')) {
     $p = Join-Path $root $file
     if (Test-Path -LiteralPath $p) { Copy-Item -LiteralPath $p -Destination $stage -Force }
     else { Write-Warning "missing $file (skipped)" }
