@@ -4,6 +4,10 @@
 
 > 仓库 / Repository: <https://github.com/younai666/NeuroMita.DLSS5>
 
+[![Release](https://img.shields.io/github/v/release/younai666/NeuroMita.DLSS5?label=release&color=brightgreen)](https://github.com/younai666/NeuroMita.DLSS5/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/younai666/NeuroMita.DLSS5/total?label=downloads)](https://github.com/younai666/NeuroMita.DLSS5/releases)
+[![Build](https://github.com/younai666/NeuroMita.DLSS5/actions/workflows/build.yml/badge.svg)](https://github.com/younai666/NeuroMita.DLSS5/actions/workflows/build.yml)
+[![License](https://img.shields.io/github/license/younai666/NeuroMita.DLSS5?label=license)](LICENSE)
 给 **NeuroMita**（MiSide 的 AI 改版）加上**内置的 DLSS 5 神经渲染**：开关与参数直接做进游戏**自带的设置菜单**（`设置 → 图像 → DLSS5 神经渲染 → DLSS5 设置`），不使用 ReShade 那套独立浮层界面。
 
 > **声明**：本项目**不是 NVIDIA 官方项目**，与 NVIDIA、ReShade、RenoDX、DLSS5-Feeder 的维护者均无隶属关系。项目只提供**集成与界面**，DLSS 5 的运行时（`nvngx_dlss.dll` / `nvngx_dlssnr.dll`）与消费端插件由各自的发布方提供，本项目**不重新分发**它们。DLSS、RTX 是 NVIDIA 的商标。

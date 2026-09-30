@@ -4,6 +4,10 @@
 
 > 仓库 / Repository: <https://github.com/younai666/NeuroMita.DLSS5>
 
+[![Release](https://img.shields.io/github/v/release/younai666/NeuroMita.DLSS5?label=release&color=brightgreen)](https://github.com/younai666/NeuroMita.DLSS5/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/younai666/NeuroMita.DLSS5/total?label=downloads)](https://github.com/younai666/NeuroMita.DLSS5/releases)
+[![Build](https://github.com/younai666/NeuroMita.DLSS5/actions/workflows/build.yml/badge.svg)](https://github.com/younai666/NeuroMita.DLSS5/actions/workflows/build.yml)
+[![License](https://img.shields.io/github/license/younai666/NeuroMita.DLSS5?label=license)](LICENSE)
 Добавляет **встроенный DLSS 5 Neural Rendering** в **NeuroMita** (AI-версия MiSide): переключатель и параметры встроены прямо в **штатное меню настроек игры** (`Настройки → Изображение → DLSS5 神经渲染 → DLSS5 设置`), без отдельного оверлея ReShade.
 
 > **Заявление**: этот проект **не является официальным проектом NVIDIA** и никак не связан с NVIDIA, ReShade, RenoDX или сопровождающими DLSS5-Feeder. Проект предоставляет только **интеграцию и интерфейс**; среда выполнения DLSS 5 (`nvngx_dlss.dll` / `nvngx_dlssnr.dll`) и плагин-потребитель распространяются их издателями, и этот проект **не распространяет их повторно**. DLSS и RTX — товарные знаки NVIDIA.
