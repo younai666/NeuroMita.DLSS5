@@ -1,21 +1,18 @@
-# 截图占位
+# 截图目录
 
-README 引用了两张截图，请在使用者自己的环境里截取后放到本目录：
-
-| 文件名 | 内容 | 建议 |
-|---|---|---|
-| `settings-l1.png` | 图形页里的 **L1 入口行**：`DLSS5 神经渲染`（位于 `窗口化` 与 `垂直同步` 之间） | 整窗截图，能看出它和原生行样式一致 |
-| `settings-l2.png` | **L2 参数页**：标题 `DLSS5 设置`、`返回` 行 + 10 个参数行 | 整窗截图，能看清每行标签与数值 |
-
-可选（有则更好）：
-
-| 文件名 | 内容 |
+| 文件 | 说明 |
 |---|---|
-| `switch-on.png` | 总开关行的标签显示 `[运行中]`（表示喂帧真的在跑） |
-| `nr-engaged.png` | `ReShade.log` 里 `NR-VERDICT … state=ENGAGED` 与 `inline feature 18 evaluation succeeded` 的日志截图 |
+| `settings-l2.png` | 游戏内 L2 参数页（实机截图，示例中游戏语言为乌克兰语，可看到文字随游戏语言变化、长文案自动缩小不溢出） |
+| `ingame-dlss5.png` | 游戏内效果：DLSS 5 神经渲染开启后的画面 |
 
-注意事项：
+## 还缺一张
 
-- 截图里**不要**包含个人信息（其他窗口、聊天软件、用户名路径等）。
-- 分辨率建议 1920×1080；格式 PNG。
-- 提交后请把 README 里对应图片的引用从纯文本改成 `![说明](docs/screenshots/xxx.png)`。
+`settings-l1.png` —— 图形页里的 **L1 入口行**（标签为 `DLSS5 神经渲染` / `DLSS5 Neural Rendering`）。
+
+补图方法：游戏内进入 `设置 → 图像`，对准那一行截图（建议 1920x1080 全窗口），存成 `docs/screenshots/settings-l1.png`，
+然后在 `README.md` 与 `README.ru.md` 的"效果截图 / Скриншоты"表里加一行即可。
+
+## 注意
+
+- 截图**不进发布包**（`package.ps1` 会把 `docs/screenshots/*.png` 从 zip 里剔除），只放在仓库里供 README 引用，这样发布包保持 ~90 KB。
+- 提交前请压缩到 1 MB 以内（`pngquant` / `oxipng` 或游戏内 F12 截图后的压缩版均可）。

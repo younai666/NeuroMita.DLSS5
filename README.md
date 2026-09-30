@@ -33,16 +33,16 @@
 
 | 文件 | 内容 |
 |---|---|
-| `docs/screenshots/settings-l1.png` | 图形页里的 **L1 入口行**：`DLSS5 神经渲染` |
-| `docs/screenshots/settings-l2.png` | **L2 参数页**：`DLSS5 设置`（11 个参数 + 返回） |
+| ![L2 参数页](docs/screenshots/settings-l2.png) | **L2 参数页**（图为游戏语言设为乌克兰语时的样子，可见文字随游戏语言变化、长文案自动缩小不溢出） |
+| ![游戏内效果](docs/screenshots/ingame-dlss5.png) | **游戏内效果**：DLSS 5 神经渲染开启后的实际画面 |
 
-> 截图由使用者在自己的游戏内补齐（见 [`docs/screenshots/README.md`](docs/screenshots/README.md)）。
+> 截图取自实机；如需补充 L1 入口行截图，请见 [`docs/screenshots/README.md`](docs/screenshots/README.md)。
 
 ---
 
-- **界面文字跟随游戏语言**：行标签与游戏的语言设置联动（游戏自带的 11 种语言全覆盖），在游戏里改语言会立刻刷新，不需要重启；长文案会自动缩放字号，不会顶到数值与滑条上。
 ## 特性
 
+- **界面文字跟随游戏语言**：行标签与游戏的语言设置联动（游戏自带的 11 种语言全覆盖），在游戏里改语言会立刻刷新，不需要重启；长文案会自动缩放字号，不会顶到数值与滑条上。
 - **内置设置菜单**：L1 入口行做进游戏原生图形页，点进去是 L2 参数页；行的样式、勾选动画、导航（鼠标/键盘/手柄）全部复用游戏控件。
 - **即时生效**：Feeder 侧参数（总开关、工作分辨率、锐化、DLSS 预设）写入 `dlss5-feed.cfg`，Feeder 运行时热重读，**不用重启**。
 - **状态可见**：总开关一行的标签会显示**真实**喂帧状态（`[运行中]` / `[已停止]`），依据是 `dlss5-feed.log` 的实际活动，而不是配置文件里的一个标志位。
@@ -109,8 +109,6 @@ NeuroMita.exe
 
 ## 配置
 
-| 文件 | 内容 |
-|---|---|
 | `BepInEx\config\nm.dlss5menu.cfg` | 插件自身：`UI.Label`、`Automation.SelfTest` |
 | `<游戏目录>\dlss5-feed.cfg` | Feeder 参数（热重载） |
 | `<游戏目录>\ReShade.ini` | ReShade 与 `[RenoDX.DLSS5]` 参数（加载时读一次） |

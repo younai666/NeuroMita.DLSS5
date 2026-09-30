@@ -84,6 +84,12 @@ foreach ($file in @('README.md', 'README.ru.md', 'LICENSE', 'CHANGELOG.md', 'CON
 $docs = Join-Path $root 'docs'
 if (Test-Path -LiteralPath $docs) {
     Copy-Item -LiteralPath $docs -Destination $stage -Recurse -Force
+    # screenshots stay in the repository only: they are 1+ MB each and the README renders them
+    # straight from GitHub, so the release archive stays small
+    $shot = Join-Path $stage 'docs\screenshots'
+    if (Test-Path -LiteralPath $shot) {
+        Get-ChildItem -LiteralPath $shot -Filter *.png -File | Remove-Item -Force
+    }
 }
 
 # ---------------------------------------------------------------- checksums
